@@ -1,41 +1,29 @@
 # Arduino
 
-### Initialize project:
+## Initialize project:
 
-```sh
 platformio init
-```
 
-### Compiling your code:
+## Compiling your code:
 
-```sh
-platformio run
-```
+	platformio run
 
-### Upload to the board
+## Upload to the board
 
-```sh
-platformio run -t upload
-```
+	platformio run -t upload
 
-### Monitor device serial port
+## Monitor device serial port
 
-```sh
-platformio serialports monitor
-```
+	platformio serialports monitor
 
-## Using Docker image
+## Using a docker image
 
 Building image:
 
-```sh
-docker build -t aegypius/platformio .
-```
+	docker build -t aegypius/platformio .
 
-> Tip : You can now use a shell function :
->
->	```sh
-function platformio() {
-	docker run --rm --privileged -v /dev/bus/usb -v $(pwd):/src -it aegypius/platformio platformio $@
-}
-```
+*Tip* : You can also use a bash function :
+
+	function platformio() {
+		docker run --rm --privileged -v /dev/bus/usb -v $(pwd):/src -it aegypius/platformio platformio $@
+	}
