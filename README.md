@@ -1,37 +1,41 @@
 # Arduino
 
-## Using Docker image
-
-### Building image:
+### Initialize project:
 
 ```sh
-docker build -t aegypius/platformio .
+platformio init
 ```
 
 ### Compiling your code:
 
 ```sh
-docker run --privileged -v /dev/bus/usb -v $(pwd):/src -it aegypius/platformio platformio run
+platformio run
 ```
 
 ### Upload to the board
 
 ```sh
-docker run --privileged -v /dev/bus/usb -v $(pwd):/src -it aegypius/platformio platformio run -t upload
+platformio run -t upload
 ```
 
 ### Monitor device serial port
 
 ```sh
-docker run --privileged -v /dev/bus/usb -v $(pwd):/src -it aegypius/platformio platformio serialports monitor
+platformio serialports monitor
 ```
 
-## Tips
+## Using Docker image
 
-You can also use a shell function :
+Building image:
 
 ```sh
+docker build -t aegypius/platformio .
+```
+
+> Tip : You can now use a shell function :
+>
+>	```sh
 function platformio() {
-	docker run --privileged -v /dev/bus/usb -v $(pwd):/src -it aegypius/platformio platformio $@
+	docker run --rm --privileged -v /dev/bus/usb -v $(pwd):/src -it aegypius/platformio platformio $@
 }
 ```
