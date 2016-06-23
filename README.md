@@ -1,5 +1,7 @@
 # Arduino
 
+[![Travis branch](https://img.shields.io/travis/aegypius/arduino/master.svg?style=flat-square)]()
+
 ## Initialize project:
 
 platformio init
