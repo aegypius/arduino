@@ -1,10 +1,10 @@
 # Arduino
 
-[![Travis branch](https://img.shields.io/travis/aegypius/arduino/master.svg?style=flat-square)]()
+[![Travis branch](https://img.shields.io/travis/aegypius/arduino/master.svg?style=flat-square)](https://travis-ci.org/aegypius/arduino)
 
 ## Initialize project:
 
-platformio init
+	platformio init
 
 ## Compiling your code:
 
