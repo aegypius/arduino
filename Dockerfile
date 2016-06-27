@@ -4,6 +4,9 @@
 FROM python:2.7
 MAINTAINER Nicolas LAURENT <innercircle@aegypius.com>
 
+ENV HOME /src
+WORKDIR /src
+
 # Installs platformio and dependencies
 RUN RUNTIME_DEPENDENCIES="libusb-1.0.0" \
  && apt-get update -qy \
@@ -11,10 +14,5 @@ RUN RUNTIME_DEPENDENCIES="libusb-1.0.0" \
  && apt-get clean \
  && python -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/master/scripts/get-platformio.py)" \
  && rm -fr /var/apt/cache/*
-
-RUN platformio platforms install atmelavr \
-    --with-package framework-arduinoavr
-
-WORKDIR /src
 
 CMD ["platformio", "run"]
