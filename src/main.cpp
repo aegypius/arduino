@@ -1,6 +1,5 @@
 #include <Arduino.h>
 
-
 //TMP36 Pin Variables
 // the analog pin the TMP36's Vout (sense) pin is connected to
 // the resolution is 10 mV / degree centigrade with a
@@ -32,8 +31,10 @@ void loop()
 	Serial.print(voltage); Serial.println(" volts");
 
 	// now print out the temperature
-	float temperatureC = (voltage - 0.5) * 100 ;  //converting from 10 mv per degree wit 500 mV offset
-											   //to degrees ((voltage - 500mV) times 100)
+	// converting from 10 mv per degree wit 500 mV offset
+	// to degrees ((voltage - 500mV) times 100)
+	float temperatureC = (voltage - 0.5) * 100;
+
 	Serial.print(temperatureC); Serial.println(" degrees C");
 
 	// now convert to Fahrenheit
