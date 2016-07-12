@@ -3,3 +3,4 @@
 .gcc-flags.json
 .platformio
 .atom-build.*
+*.gch

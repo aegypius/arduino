@@ -1,10 +1,9 @@
 #include <Arduino.h>
+#include <ThermalSensor.hpp>
 
-//TMP36 Pin Variables
-// the analog pin the TMP36's Vout (sense) pin is connected to
-// the resolution is 10 mV / degree centigrade with a
-// 500 mV offset to allow for negative temperatures
-int sensorPin = 0;
+#define THERMAL_SENSOR_PIN 0
+#define THERMAL_SENSOR_VOLTAGE 5.0
+ThermalSensor tmp36(THERMAL_SENSOR_PIN, THERMAL_SENSOR_VOLTAGE);
 
 /*
  * setup() - this function runs once when you turn your Arduino on
@@ -12,35 +11,34 @@ int sensorPin = 0;
  */
 void setup()
 {
-	//Start the serial connection with the computer
-	//to view the result open the serial monitor
-	Serial.begin(9600);
+  Serial.begin(9600);
+  while (!Serial) ;
+  Serial.println("ARDUINO: ready");
 }
 
 // run over and over again
 void loop()
 {
-	//getting the voltage reading from the temperature sensor
-	int reading = analogRead(sensorPin);
+  tmp36.update();
 
-	// converting that reading to voltage, for 3.3v arduino use 3.3
-	float voltage = reading * 5.0;
-	voltage /= 1024.0;
+  Serial.println("");
 
-	// print out the voltage
-	Serial.print(voltage); Serial.println(" volts");
+  Serial.print("TMP36: ");
+  Serial.print(tmp36.getVolts());
+  Serial.println("V");
 
-	// now print out the temperature
-	// converting from 10 mv per degree wit 500 mV offset
-	// to degrees ((voltage - 500mV) times 100)
-	float temperatureC = (voltage - 0.5) * 100;
+  Serial.print("TMP36: ");
+  Serial.print(tmp36.getCelsius());
+  Serial.println("°C");
 
-	Serial.print(temperatureC); Serial.println(" degrees C");
+  Serial.print("TMP36: ");
+  Serial.print(tmp36.getKelvin());
+  Serial.println("°K");
 
-	// now convert to Fahrenheit
-	float temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
-	Serial.print(temperatureF); Serial.println(" degrees F");
+  Serial.print("TMP36: ");
+  Serial.print(tmp36.getFahrenheit());
+  Serial.println("°F");
 
-	// waiting a second
-	delay(1000);
+  // waiting a second
+  delay(1000);
 }
